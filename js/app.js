@@ -4,9 +4,12 @@ var viewModel = function() {
 	var self = this;
   var map;
   var defaultNeighborhood = "Singapore, Singapore";
+  var mapMarkers   = [];
+  var infowindow;
 
   self.topPicks     = ko.observableArray([]); 
   self.neighborhood = ko.observable(defaultNeighborhood); 
+
 
   initializeMap();
 
@@ -15,6 +18,19 @@ var viewModel = function() {
       requestNeighborhood(self.neighborhood());
     }
   });
+
+  self.clickVenue = function(clickedItem) {
+    var clickedVenueName = clickedItem.venue.name;
+    for (var i = 0; i < mapMarkers.length; i ++) {
+      if (clickedVenueName === mapMarkers[i].title) {
+            console.log("I was clicked!!" + clickedVenueName);
+            google.maps.event.trigger(mapMarkers[i], 'click');
+            map.panTo(mapMarkers[i].position);
+            map.setZoom(15);
+      }
+    }
+
+  };
 
 // self.listToppicks = ko.computed(function() {
 //    for (var i in self.topPicks()) {
@@ -25,12 +41,14 @@ var viewModel = function() {
 
   function initializeMap() {
     var mapOptions = {
-      zoom: 15,
+      zoom: 14,
       disableDefaultUI: true,
       // center: new google.maps.LatLng(-34.397, 150.644)
     };
   
     map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
+
+    infowindow = new google.maps.InfoWindow();
   }
 
   //
@@ -41,6 +59,7 @@ var viewModel = function() {
     
     newLocation = new google.maps.LatLng(lat, longt);
     map.setCenter(newLocation);
+    map.setZoom(14);
     console.log("Lat and long for  " + name + " : " + lat + "**" + longt);
 
     foursquareUri = "https://api.foursquare.com/v2/venues/explore?ll=";
@@ -50,9 +69,9 @@ var viewModel = function() {
     $.getJSON(foursquareQueryUri, function(data) {
       self.topPicks(data.response.groups[0].items);
       for (var i in self.topPicks()) {
-        console.log("FS API return : " + self.topPicks()[i].venue.name + 
+        console.log("FS API return : " + self.topPicks()[i].venue.name + self.topPicks()[i].tips[0].text + 
                                          self.topPicks()[i].venue.location.lat + "counter = " + i);
-        createMarker(self.topPicks()[i].venue);
+        createMarker(self.topPicks()[i].venue,self.topPicks()[i].tips);
       }
     });
 
@@ -68,17 +87,34 @@ var viewModel = function() {
     }
   }
 
-  function createMarker(venue) {
+  function createMarker(venue, tips) {
     var lat = venue.location.lat;
     var lng = venue.location.lng;
     var name = venue.name;
+    var category = venue.categories[0].name;
+    var address = venue.location.formattedAddress;
     var position = new google.maps.LatLng(lat, lng);
+    var tipText = "TIP: " + tips[0].text;
 
     var marker = new google.maps.Marker({
       map: map,
       position: position,
       title: name
     });
+
+    mapMarkers.push(marker);
+
+    var contentString = '<div class="infowindow"><p><span class="v-name">' + name +
+      '</span></p><p class="v-category"><span>' + category +
+      '</span></p><p class="v-address"><span>' + tipText;
+
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.setContent(contentString);
+      infowindow.open(map, marker);
+    });
+
+    
+    console.log("pushed to mapMarkers " + mapMarkers[mapMarkers.length - 1].title);
   }
 
   // get neighborhood location data using Google Map Place Service

@@ -18,11 +18,15 @@
 </head>
 <body>
     <div id="searchBox">
+        <span class="glyphicon glyphicon-search">
         <input data-bind="value: neighborhood" type="text" placeholder="Where's your neighborhood?" required>
+        </span>
     </div>
     
     <div id="filterBox">
+        <span class="glyphicon glyphicon-filter">
         <input type="text" placeholder="Filter items" required>
+        </span>
     </div>
     
     <div id="map-canvas"></div>
@@ -34,10 +38,10 @@
         <div class="list-group">
             <ul class="list-details" data-bind="foreach: topPicks" id="side-menu-collapse">
                 <hr>
-                <li>
+                <li data-bind="click: $parent.clickVenue">
                     <h3><span class="list-group-item-heading" data-bind="text: venue.name"></span></h3>
-                    <p><span class="list-group-item-category" data-bind="text: venue.categories[0].name"></span></p>
-                    <p><span class="list-group-item-address" data-bind="text: venue.location.formattedAddress"></span></p>
+                     <p><span class="list-group-item-category" data-bind="text: venue.categories[0].name"></span></p>
+                     <p><span class="list-group-item-address" data-bind="text: venue.location.formattedAddress"></span></p>
                 </li>
             </ul>
         </div>

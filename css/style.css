@@ -3,14 +3,12 @@ html { height: 100% }
 body { height: 100%; margin: 0; padding: 0 }
 #map-canvas { height: 100% }
 
-
 @media screen and (min-width: 768px) {
 
 .infolistBox .collapse{
             display:block;
       }  
 }
-
 
 #searchBox {
   max-width: 640px;
@@ -23,6 +21,18 @@ body { height: 100%; margin: 0; padding: 0 }
   top: 25px;
   left: 15px;
   background-color: #FFFFFF;
+}
+
+.searchButton {
+  background-color: #FF9800;
+  width: 72px;
+  height: 32px;
+  border: 0px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+  padding: 0px;
+  outline: 0;
+  cursor: pointer;
 }
 
 #filterBox {

@@ -7,10 +7,12 @@ var viewModel = function() {
   var mapMarkers   = [];
   var infowindow;
 
-  self.topPicks     = ko.observableArray([]); 
+  self.topPicks         = ko.observableArray([]); 
+  self.topPicksFiltered = ko.observableArray(self.topPicks());
   self.neighborhood = ko.observable(defaultNeighborhood); 
+  self.filterString = ko.observable('');
 
-
+  
   initializeMap();
 
   self.newNeighborhood = ko.computed(function() {
@@ -29,15 +31,26 @@ var viewModel = function() {
             map.setZoom(15);
       }
     }
-
   };
 
-// self.listToppicks = ko.computed(function() {
-//    for (var i in self.topPicks()) {
-//      console.log("in listToppicks.." + self.topPicks()[i].venue.name);
-//    }
-//    self.topPicks();
-//  });
+  self.filterTopPicks = ko.computed(function() {
+    var venue;
+    var filteredTopPicks = [];
+    var filterString     = self.filterString().toLowerCase();
+
+    for (var i in self.topPicks()) {
+      venue = self.topPicks()[i].venue;
+
+      if (venue.name.toLowerCase().indexOf(filterString) != -1 ||
+          venue.categories[0].name.toLowerCase().indexOf(filterString) != -1) {
+        filteredTopPicks.push(self.topPicks()[i]);
+
+        console.log("in listToppicks.." + self.topPicks()[i].venue.name + filterString);
+      }
+    }
+    console.log("in listTopPics.." + filteredTopPicks.length);
+    self.topPicksFiltered(filteredTopPicks);
+  });
 
   function initializeMap() {
     var mapOptions = {
@@ -63,9 +76,11 @@ var viewModel = function() {
     console.log("Lat and long for  " + name + " : " + lat + "**" + longt);
 
     foursquareUri = "https://api.foursquare.com/v2/venues/explore?ll=";
-    baseLocation = lat + ", " + longt;
-    extraParams = "&limit=15&section=topPicks&day=any&time=any&locale=en&client_id=1AMO01APWLHPX1VNICMSOD2VWXQSDRUMFDSVTSTJZITY2ZQE&client_secret=XYSEVN4ABIDAWIULKL14TM5GABGQP3EWUOYHOH4XIXSWK2JT&v=YYYYMMDD&v=20141121";
-    foursquareQueryUri = foursquareUri + baseLocation + extraParams;
+    baseLocation  = lat + ", " + longt;
+    extraParams   = "&limit=15&section=topPicks&day=any&time=any&locale=en";
+    clientID      = "&client_id=1AMO01APWLHPX1VNICMSOD2VWXQSDRUMFDSVTSTJZITY2ZQE";
+    clientSecret  = "&client_secret=XYSEVN4ABIDAWIULKL14TM5GABGQP3EWUOYHOH4XIXSWK2JT&v=YYYYMMDD&v=20141121";
+    foursquareQueryUri = foursquareUri + baseLocation + extraParams + clientID + clientSecret;
     $.getJSON(foursquareQueryUri, function(data) {
       self.topPicks(data.response.groups[0].items);
       for (var i in self.topPicks()) {

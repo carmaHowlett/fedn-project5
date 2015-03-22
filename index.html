@@ -25,7 +25,7 @@
     
     <div id="filterBox">
         <span class="glyphicon glyphicon-filter">
-        <input type="text" placeholder="Filter items" required>
+        <input data-bind="value: filterString" type="text" placeholder="Filter items" required>
         </span>
     </div>
     
@@ -36,7 +36,7 @@
             <span><img src="img/foursquare-icon.png"><h2>  Popular  Places</h2></span>
         </div>
         <div class="list-group">
-            <ul class="list-details" data-bind="foreach: topPicks" id="side-menu-collapse">
+            <ul class="list-details" data-bind="foreach: topPicksFiltered" id="side-menu-collapse">
                 <hr>
                 <li data-bind="click: $parent.clickVenue">
                     <h3><span class="list-group-item-heading" data-bind="text: venue.name"></span></h3>

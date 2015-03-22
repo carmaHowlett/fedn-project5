@@ -46,11 +46,32 @@ var viewModel = function() {
         filteredTopPicks.push(self.topPicks()[i]);
 
         console.log("in listToppicks.." + self.topPicks()[i].venue.name + filterString);
+
       }
     }
-    console.log("in listTopPics.." + filteredTopPicks.length);
+
+    console.log("Total number of filtered items.." + filteredTopPicks.length);
+
     self.topPicksFiltered(filteredTopPicks);
+
   });
+
+  self.filterMarkers = ko.computed(function() {
+     displayFilteredMarkers(self.filterString().toLowerCase())
+  });
+
+  function displayFilteredMarkers(filterString) {
+    for (var j in mapMarkers) {
+      if (mapMarkers[j].map === null) {
+        mapMarkers[j].setMap(map);
+      }
+
+      if (mapMarkers[j].title.toLowerCase().indexOf(filterString) === -1) {
+              console.log("hide marker for.." + mapMarkers[j].title + filterString); 
+              mapMarkers[j].setMap(null);       
+      }
+    }
+  }
 
   function initializeMap() {
     var mapOptions = {

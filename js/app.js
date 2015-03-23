@@ -70,6 +70,13 @@ var viewModel = function() {
               console.log("hide marker for.." + mapMarkers[j].title + filterString); 
               mapMarkers[j].setMap(null);       
       }
+
+      for (var i in self.topPicksFiltered()) {
+        if (mapMarkers[j].title.toLowerCase() === self.topPicksFiltered()[i].venue.name.toLowerCase()) {
+          mapMarkers[j].setMap(map);
+          console.log("marker:" + mapMarkers[j].title + ">>>" + self.topPicksFiltered()[i].venue.name);
+        }
+      }
     }
   }
 

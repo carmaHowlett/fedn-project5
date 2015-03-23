@@ -3,6 +3,10 @@ html { height: 100% }
 body { height: 100%; margin: 0; padding: 0 }
 #map-canvas { height: 100% }
 
+::-webkit-input-placeholder {
+   text-align: center;
+}
+
 @media screen and (min-width: 768px) {
 
 .custom-collapse .collapse{
@@ -102,6 +106,30 @@ body { height: 100%; margin: 0; padding: 0 }
 }
 
 .list-group-item-category,
-.list-group-item-address {
+.list-group-item-address,
+.list-group-item-rating {
   margin-bottom: 10px;
+}
+
+.infowindow {
+  width: 250px;
+  font-size: 13px;
+}
+
+.v-name {
+  font-weight: bold;
+  font-size: 15px;
+  color: #404040;
+}
+
+p.v-category,
+p.v-address,
+p.v-contact
+p.v-tip {
+  margin-bottom: 10px;
+}
+
+.v-url {
+  color: #4272db;
+  text-decoration: none;
 }

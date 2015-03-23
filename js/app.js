@@ -144,6 +144,7 @@ var viewModel = function() {
     var address = venue.location.formattedAddress;
     var position = new google.maps.LatLng(lat, lng);
     var tipText = "TIP: " + tips[0].text;
+    var url = venue.url;
 
     var marker = new google.maps.Marker({
       map: map,
@@ -155,13 +156,19 @@ var viewModel = function() {
 
     var contentString = '<div class="infowindow"><p><span class="v-name">' + name +
       '</span></p><p class="v-category"><span>' + category +
-      '</span></p><p class="v-address"><span>' + tipText;
+      '</span></p><p class="v-url"><span>' + url +
+      '</span></p><p class="v-tip"><span>' + tipText;
+
 
     google.maps.event.addListener(marker, 'click', function() {
       infowindow.setContent(contentString);
       infowindow.open(map, marker);
     });
-
+    
+    google.maps.event.addListener(marker, 'mouseover', function() {
+      infowindow.setContent(contentString);
+      infowindow.open(map, marker);
+    });
     
     console.log("pushed to mapMarkers " + mapMarkers[mapMarkers.length - 1].title);
   }

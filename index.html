@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
 	<script type="text/javascript" src="js/lib/knockout-3.2.0.js"></script>
     <script type="text/javascript" src="js/app.js"></script>    
@@ -36,7 +35,7 @@
             <span><img src="img/foursquare-icon.png"><h2>  Popular  Places</h2></span>
         </div>
         <div class="list-group">
-            <ul class="list-details" data-bind="foreach: topPicksFiltered" id="side-menu-collapse">
+            <ul class="list-details" data-bind="foreach: topPicksFiltered">
                 <hr>
                 <li data-bind="click: $parent.clickVenue">
                     <h3><span class="list-group-item-heading" data-bind="text: venue.name"></span></h3>

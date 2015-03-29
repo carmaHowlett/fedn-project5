@@ -5,11 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>My Neighborhood Map</title>
-    <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="css/style.css">  
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400' rel='stylesheet' type='text/css'> 
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAen7PbIr7_GiIRIfKT5nluQ5bLTQpTwcg&libraries=places"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
 	<script type="text/javascript" src="js/lib/knockout-3.2.0.js"></script>
@@ -17,22 +17,26 @@
 </head>
 <body>
     <div id="searchBox">
-        <span class="glyphicon glyphicon-search">
-        <input data-bind="value: neighborhood" type="text" placeholder="Where's your neighborhood?" required>
-        </span>
+         <button type="button" class="btn btn-default">
+            <span class="glyphicon glyphicon-search">
+                <input data-bind="value: neighborhood" type="text" placeholder="Where's your neighborhood?" required>
+            </span>
+        </button>
     </div>
     
     <div id="filterBox">
-        <span class="glyphicon glyphicon-filter">
-        <input data-bind="value: filterString" type="text" placeholder="Filter by Name/Category" required>
-        </span>
+        <button type="button" class="btn btn-default">
+            <span class="glyphicon glyphicon-filter">
+                <input data-bind="value: filterString" type="text" placeholder="Filter by Name/Category" required>
+            </span>
+        </button>
     </div>
     
     <div id="map-canvas"></div>
 
     <div id="listBox">
         <div class="list-heading">
-            <span><img src="img/foursquare-icon.png"><h2>  Popular  Places</h2></span>
+            <span><img src="img/foursquare-icon.png"><p> Popular Places</p></span>
         </div>
         <div class="list-group">
             <ul class="list-details" data-bind="foreach: topPicksFiltered">
@@ -48,6 +52,5 @@
             </ul>
         </div>
     </div>
-
 </body>
 </html>

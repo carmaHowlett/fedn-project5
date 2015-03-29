@@ -1,17 +1,21 @@
 html { height: 100% }
-body { height: 100%; margin: 0; padding: 0 }
+body { height: 100%; margin: 0; padding: 0; font-family: 'Ubuntu', sans-serif; }
 #map-canvas { height: 100% }
 
 ::-webkit-input-placeholder {
    text-align: center;
+   font-family: 'Ubuntu', sans-serif;
+   font-size: 13px;
 }
 
+.glyphicon {
+  width: 280px;
+}
+
+
 #searchBox {
-  max-width: 640px;
-  padding-left: 2px;
-  padding-right: 2px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-  border-radius: 3px;
+  font-family: 'Ubuntu', sans-serif;
+  max-width: 400px;
   z-index: 92;
   position: fixed;
   top: 25px;
@@ -20,39 +24,41 @@ body { height: 100%; margin: 0; padding: 0 }
 }
 
 
-
 #filterBox {
+  font-family: 'Ubuntu', sans-serif;
   max-width: 400px;
-  padding-left: 2px;
-  padding-right: 2px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-  border-radius: 3px;
+  border-radius: 4px;
   z-index: 92;
   position: fixed;
-  top: 65px;
+  top: 70px;
   left: 15px;
   background-color: #FFFFFF;
 }
-
 
 #listBox {
   max-width: 400px;
   padding-left: 2px;
   padding-right: 2px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-  border-radius: 3px;
+  border-radius: 4px;
   z-index: 102;
   position: fixed;
-  top: 105px;
+  top: 115px;
   left: 15px;
-  background-color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.82);
+  margin-bottom: 0;
+  overflow: auto;
 }
 
-.list-heading h2 {
+.list-heading p {
   font-family: 'Ubuntu', sans-serif;
   display: inline;
+  padding-top: 0px;
   vertical-align: center;
   font-size: 27px;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
 .list-details {
@@ -61,11 +67,11 @@ body { height: 100%; margin: 0; padding: 0 }
   color: #333;
   list-style: none;
   max-width: 300px;
-  height: 500px;
+  max-height: 500px;
   overflow-x: hidden;
   overflow-y: auto;
   margin: 0;
-  padding: 0;
+  padding: 5px;
 }
 
 .list-details li:hover {
@@ -76,18 +82,21 @@ body { height: 100%; margin: 0; padding: 0 }
   background-color: #FFD180;
 }
 
-.list-details::-webkit-scrollbar {
-  width: 10px;
-  overflow: visible;
-}
 
 .list-group-item-heading {
   font-weight: bold;
-  font-size: 15px;
+  font-size: 20px;
   color: #404040;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
 }
 
-.list-group-item-category,
+.list-group-item-category {
+    padding-top: 0px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
 .list-group-item-address,
 .list-group-item-rating {
   margin-bottom: 10px;
@@ -96,18 +105,31 @@ body { height: 100%; margin: 0; padding: 0 }
 .infowindow {
   width: 250px;
   font-size: 12px;
+  background-color: rgba(245, 245, 245, 0.4);
+  font-family: 'Ubuntu', sans-serif;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .v-name {
   font-weight: bold;
   font-size: 15px;
   color: #404040;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
 }
 
-p.v-category,
-p.v-address,
-p.v-contact
-p.v-tip {
+.v-category {
+  font-size: 12px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  padding-top: 0px;
+  padding-bottom: 10px;
+}
+
+.v-address,
+.v-contact,
+.v-tip {
   margin-bottom: 10px;
 }
 
@@ -116,32 +138,45 @@ p.v-tip {
   text-decoration: none;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 600px) {
+  #searchBox {
+    top: 5px;
+    left: 10%;
+    right: 10%;
+    max-width: 200px;
+  }
+  #filterBox {
+    top: 45px;
+    left: 10%;
+    right: 10%;
+    max-width: 200px;
+  }
   #listBox {
-    max-width: 90%;
+    width: 90%;
+    height: 150px;
     position: fixed;
-    top: 305px;
-    bottom: 15px;
+    top: 70%;
+    bottom: 5%;
     left: 15px;
   }
   .list-heading h2 {
-  font-size: 17px;
+    font-size: 17px;
   }
   .list-group-item-heading {
-  font-weight: bold;
-  font-size: 12px;
+    font-weight: bold;
+    font-size: 12px;
   }
   .list-details {
     font-size: 10px;
-    max-width: 90%;
+    width: 100%;
     height: 100px;
     overflow-y: scroll;
   }
   .infowindow {
-  width: 100px;
-  font-size: 10px;
+    width: 100px;
+    font-size: 10px;
   }
-  p.v-tip {
+  .v-tip {
    display: none;
   }
 }

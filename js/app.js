@@ -154,10 +154,21 @@ var viewModel = function() {
 
     mapMarkers.push(marker);
 
-    var contentString = '<div class="infowindow"><p><span class="v-name">' + name +
+    var urlDom;
+
+    if (url != undefined) {
+      urlDom = '</span></p><p><a href="' + url + '" class="v-link" target="_blank">' + url + '</a></p>';
+      console.log("Formatted DOM1 is: " + urlDom);
+      var contentString = '<div class="infowindow"><p><span class="v-name">' + name + 
       '</span></p><p class="v-category"><span>' + category +
-      '</span></p><p class="v-url"><span>' + url +
+      urlDom +
+      '<p class="v-tip"><span>' + tipText;
+      console.log("Formatted DOM2 is: " + contentString);
+    } else {
+      var contentString = '<div class="infowindow"><p><span class="v-name">' + name +
+      '</span></p><p class="v-category"><span>' + category +
       '</span></p><p class="v-tip"><span>' + tipText;
+    }
 
 
     google.maps.event.addListener(marker, 'click', function() {

@@ -15,12 +15,15 @@ var viewModel = function() {
   
   initializeMap();
 
+  // display neighborhood map based on user input 
+  // initial map is set to Singapore, Singapore 
   self.newNeighborhood = ko.computed(function() {
     if (self.neighborhood() != '') {
       requestNeighborhood(self.neighborhood());
     }
   });
 
+  // function to handle user clicks on a mapMarker
   self.clickVenue = function(clickedItem) {
     var clickedVenueName = clickedItem.venue.name;
     for (var i = 0; i < mapMarkers.length; i ++) {
@@ -33,6 +36,7 @@ var viewModel = function() {
     }
   };
 
+  // manage display list of Foursqaure top places based on a given location
   self.filterTopPicks = ko.computed(function() {
     var venue;
     var filteredTopPicks = [];
@@ -56,10 +60,13 @@ var viewModel = function() {
 
   });
 
+
   self.filterMarkers = ko.computed(function() {
      displayFilteredMarkers(self.filterString().toLowerCase())
   });
 
+  // display markers only which satisfy filter string entered by user;
+  // filter display list either based on Venue name or Venue category
   function displayFilteredMarkers(filterString) {
     for (var j in mapMarkers) {
       if (mapMarkers[j].map === null) {
@@ -80,6 +87,7 @@ var viewModel = function() {
     }
   }
 
+  // initialize display of Google Map
   function initializeMap() {
     var mapOptions = {
       zoom: 14,
@@ -98,7 +106,8 @@ var viewModel = function() {
     infowindow = new google.maps.InfoWindow();
   }
 
-  //
+  // based on location given by user, call Foursquare 
+  // to get top 14 list of Popular Places 
   function getNeighborhoodInformation(locationDetail) {
     var lat   = locationDetail.geometry.location.lat();
     var longt = locationDetail.geometry.location.lng();

@@ -123,7 +123,10 @@ var viewModel = function() {
     extraParams   = "&limit=15&section=topPicks&day=any&time=any&locale=en";
     clientID      = "&client_id=1AMO01APWLHPX1VNICMSOD2VWXQSDRUMFDSVTSTJZITY2ZQE";
     clientSecret  = "&client_secret=XYSEVN4ABIDAWIULKL14TM5GABGQP3EWUOYHOH4XIXSWK2JT&v=YYYYMMDD&v=20141121";
+
     foursquareQueryUri = foursquareUri + baseLocation + extraParams + clientID + clientSecret;
+
+    // JSON request to Foursquare API. display alert in case API call fails
     $.getJSON(foursquareQueryUri, function(data) {
       $("#listBox").css("display", "inline");
       self.topPicks(data.response.groups[0].items);
@@ -152,6 +155,7 @@ var viewModel = function() {
     }
   }
 
+  // create mapMarker for each popular venue returned by Foursquare API
   function createMarker(venue, tips) {
     var lat = venue.location.lat;
     var lng = venue.location.lng;
@@ -185,7 +189,6 @@ var viewModel = function() {
       '</span></p><p class="v-category"><span>' + category +
       '</span></p><p class="v-tip"><span> ' + tipText;
     }
-
 
     google.maps.event.addListener(marker, 'click', function() {
       infowindow.setContent(contentString);

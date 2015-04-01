@@ -138,7 +138,7 @@ var viewModel = function() {
       console.log("value of location:" + location[0]);
     } else {
       $("#listBox").css("display", "none");
-      alert("Neighborhood not found in Google Maps");
+      alert("Neighborhood not found or Google API error");
       return;
     }
   }

@@ -2,34 +2,22 @@ html { height: 100% }
 body { height: 100%; margin: 0; padding: 0; font-family: 'Ubuntu', sans-serif; }
 #map-canvas { height: 100% }
 
-::-webkit-input-placeholder {
-   text-align: center;
-   font-family: 'Ubuntu', sans-serif;
-   font-size: 13px;
-}
-
-.glyphicon {
-  width: 280px;
-}
-
-
 #searchBox {
   font-family: 'Ubuntu', sans-serif;
-  max-width: 400px;
-  z-index: 92;
+  width: 30%;
+  z-index: 100;
   position: fixed;
   top: 25px;
   left: 15px;
   background-color: #FFFFFF;
 }
 
-
 #filterBox {
   font-family: 'Ubuntu', sans-serif;
-  max-width: 400px;
+  width: 30%;
   box-shadow: 0 2px 6px rgba(0,0,0,0.3);
   border-radius: 4px;
-  z-index: 92;
+  z-index: 101;
   position: fixed;
   top: 70px;
   left: 15px;
@@ -37,7 +25,8 @@ body { height: 100%; margin: 0; padding: 0; font-family: 'Ubuntu', sans-serif; }
 }
 
 #listBox {
-  max-width: 400px;
+  width: 30%;
+  max-height: 80%;
   padding-left: 2px;
   padding-right: 2px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.3);
@@ -48,7 +37,9 @@ body { height: 100%; margin: 0; padding: 0; font-family: 'Ubuntu', sans-serif; }
   left: 15px;
   background-color: rgba(255, 255, 255, 0.82);
   margin-bottom: 0;
-  overflow: auto;
+  display: none;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .list-heading p {
@@ -66,12 +57,20 @@ body { height: 100%; margin: 0; padding: 0; font-family: 'Ubuntu', sans-serif; }
   font-family: 'Ubuntu', sans-serif;
   color: #333;
   list-style: none;
-  max-width: 300px;
-  max-height: 500px;
-  overflow-x: hidden;
-  overflow-y: auto;
+  max-width: 95%;
+  max-height: 100%;
   margin: 0;
   padding: 5px;
+  overflow: auto;
+}
+
+.list-details::-webkit-scrollbar {
+  width: 5%;
+  overflow: auto;
+}
+
+.list-details::-webkit-scrollbar-thumb {
+  background-color: #D62929;
 }
 
 .list-details li:hover {
@@ -81,7 +80,6 @@ body { height: 100%; margin: 0; padding: 0; font-family: 'Ubuntu', sans-serif; }
 .list-details li:active {
   background-color: #FFD180;
 }
-
 
 .list-group-item-heading {
   font-weight: bold;
@@ -105,7 +103,6 @@ body { height: 100%; margin: 0; padding: 0; font-family: 'Ubuntu', sans-serif; }
 .infowindow {
   width: 250px;
   font-size: 12px;
-  background-color: rgba(245, 245, 245, 0.4);
   font-family: 'Ubuntu', sans-serif;
   margin-top: 0px;
   margin-bottom: 0px;
@@ -138,44 +135,71 @@ body { height: 100%; margin: 0; padding: 0; font-family: 'Ubuntu', sans-serif; }
   text-decoration: none;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
   #searchBox {
     top: 5px;
-    left: 10%;
+    left: 15%;
     right: 10%;
-    max-width: 200px;
+    width: 70%;
   }
   #filterBox {
     top: 45px;
-    left: 10%;
+    left: 15%;
     right: 10%;
-    max-width: 200px;
+    width: 70%;
   }
   #listBox {
-    width: 90%;
+    width: 80%;
     height: 150px;
     position: fixed;
     top: 70%;
     bottom: 5%;
-    left: 15px;
+    left: 10%;
+    right: 10%;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 0px;
   }
   .list-heading h2 {
-    font-size: 17px;
+    font-size: 13px;
   }
   .list-group-item-heading {
     font-weight: bold;
     font-size: 12px;
+    padding-top: 0px;
+    padding-bottom: 0px;     
   }
   .list-details {
     font-size: 10px;
     width: 100%;
     height: 100px;
-    overflow-y: scroll;
+    overflow-y: auto;
+    padding-top: 0px;
+    padding-bottom: 0px; 
+    padding-left: 5px;
+    padding-right: 5px;
+    margin: 0px;
+  }
+  .list-details::-webkit-scrollbar {
+    width: 5px;
+    overflow: auto;
+  }
+  .list-details::-webkit-scrollbar-thumb {
+    background-color: #D62929;
   }
   .infowindow {
     width: 100px;
     font-size: 10px;
   }
+  .v-name,
+  .v-address,
+  .v-contact {
+    padding-top: 0px;
+    padding-bottom: 0px;      
+  }
+  .list-group-item-category,
+  .v-url,
   .v-tip {
    display: none;
   }

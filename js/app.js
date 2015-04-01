@@ -116,23 +116,30 @@ var viewModel = function() {
     clientSecret  = "&client_secret=XYSEVN4ABIDAWIULKL14TM5GABGQP3EWUOYHOH4XIXSWK2JT&v=YYYYMMDD&v=20141121";
     foursquareQueryUri = foursquareUri + baseLocation + extraParams + clientID + clientSecret;
     $.getJSON(foursquareQueryUri, function(data) {
+      $("#listBox").css("display", "inline");
       self.topPicks(data.response.groups[0].items);
       for (var i in self.topPicks()) {
         console.log("FS API return : " + self.topPicks()[i].venue.name + self.topPicks()[i].tips[0].text + 
                                          self.topPicks()[i].venue.location.lat + "counter = " + i);
         createMarker(self.topPicks()[i].venue,self.topPicks()[i].tips);
       }
+    })
+    .error(function() { 
+      $("#listBox").css("display", "none");
+      alert("Error retrieving Froursquare Popular Places");
     });
-
   }
 
   // this is the callback function from calling the Place Service
   function neighborhoodCallback(location, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
+      $("#listBox").css("display", "inline");
       getNeighborhoodInformation(location[0]);
       console.log("value of location:" + location[0]);
     } else {
-      console.log("Invalid location, not found in Google Maps");
+      $("#listBox").css("display", "none");
+      alert("Neighborhood not found in Google Maps");
+      return;
     }
   }
 
@@ -143,7 +150,7 @@ var viewModel = function() {
     var category = venue.categories[0].name;
     var address = venue.location.formattedAddress;
     var position = new google.maps.LatLng(lat, lng);
-    var tipText = "TIP: " + tips[0].text;
+    var tipText = 'TIP: ' + tips[0].text;
     var url = venue.url;
 
     var marker = new google.maps.Marker({
@@ -167,7 +174,7 @@ var viewModel = function() {
     } else {
       var contentString = '<div class="infowindow"><p><span class="v-name">' + name +
       '</span></p><p class="v-category"><span>' + category +
-      '</span></p><p class="v-tip"><span>' + tipText;
+      '</span></p><p class="v-tip"><span> ' + tipText;
     }
 
 

@@ -17,21 +17,23 @@
 </head>
 <body>
     <div id="searchBox">
-         <button type="button" class="btn btn-default">
-            <span class="glyphicon glyphicon-search">
-                <input data-bind="value: neighborhood" type="text" placeholder="Where's your neighborhood?" required>
-            </span>
-        </button>
+        <div class="input-group add-on">
+            <input data-bind="value: neighborhood" type="text" class="form-control" placeholder="Where's your neighborhood?"  required>    
+             <div class="input-group-btn">
+                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+        </div>
     </div>
     
     <div id="filterBox">
-        <button type="button" class="btn btn-default">
-            <span class="glyphicon glyphicon-filter">
-                <input data-bind="value: filterString" type="text" placeholder="Filter by Name/Category" required>
-            </span>
-        </button>
+        <div class="input-group add-on">
+            <input data-bind="value: filterString" type="text" class="form-control" placeholder="Filter by Name/Category" required>
+             <div class="input-group-btn">
+                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-filter"></i></button>
+            </div>
+        </div>
     </div>
-    
+
     <div id="map-canvas"></div>
 
     <div id="listBox">

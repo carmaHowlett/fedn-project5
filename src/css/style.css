@@ -1,0 +1,212 @@
+html { height: 100% }
+body { height: 100%; margin: 0; padding: 0; font-family: 'Ubuntu', sans-serif; }
+#map-canvas { height: 100% }
+
+#searchBox {
+  font-family: 'Ubuntu', sans-serif;
+  width: 30%;
+  z-index: 100;
+  position: fixed;
+  top: 25px;
+  left: 15px;
+  background-color: #FFFFFF;
+}
+
+.btn  {
+  border-radius: 0px;
+}
+
+#filterBox {
+  font-family: 'Ubuntu', sans-serif;
+  width: 30%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  z-index: 101;
+  position: fixed;
+  top: 70px;
+  left: 15px;
+  background-color: #FFFFFF;
+}
+
+#listBox {
+  width: 30%;
+  max-height: 80%;
+  padding-left: 2px;
+  padding-right: 2px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  z-index: 102;
+  position: fixed;
+  top: 115px;
+  left: 15px;
+  background-color: rgba(255, 255, 255, 0.82);
+  margin-bottom: 0;
+  display: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.list-heading p {
+  font-family: 'Ubuntu', sans-serif;
+  display: inline;
+  padding-top: 0px;
+  vertical-align: center;
+  font-size: 27px;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.list-details {
+  font-size: 13px;
+  font-family: 'Ubuntu', sans-serif;
+  color: #333;
+  list-style: none;
+  max-width: 95%;
+  max-height: 100%;
+  margin: 0;
+  padding: 5px;
+  overflow: auto;
+}
+
+.list-details::-webkit-scrollbar {
+  width: 5%;
+  overflow: auto;
+}
+
+.list-details::-webkit-scrollbar-thumb {
+  background-color: #D62929;
+}
+
+.list-details li:hover {
+  background-color: #FFF3E0;
+}
+
+.list-details li:active {
+  background-color: #FFD180;
+}
+
+.list-group-item-heading {
+  font-weight: bold;
+  font-size: 20px;
+  color: #404040;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+
+.list-group-item-category {
+    padding-top: 0px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.list-group-item-address,
+.list-group-item-rating {
+  margin-bottom: 10px;
+}
+
+.infowindow {
+  width: 250px;
+  font-size: 12px;
+  font-family: 'Ubuntu', sans-serif;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.v-name {
+  font-weight: bold;
+  font-size: 15px;
+  color: #404040;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+
+.v-category {
+  font-size: 12px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  padding-top: 0px;
+  padding-bottom: 10px;
+}
+
+.v-address,
+.v-contact,
+.v-tip {
+  margin-bottom: 10px;
+}
+
+.v-url {
+  color: #4272db;
+  text-decoration: none;
+}
+
+@media (max-width: 900px) {
+  #searchBox {
+    top: 5px;
+    left: 15%;
+    right: 10%;
+    width: 70%;
+  }
+  #filterBox {
+    top: 45px;
+    left: 15%;
+    right: 10%;
+    width: 70%;
+  }
+  #listBox {
+    width: 80%;
+    height: 150px;
+    position: fixed;
+    top: 70%;
+    bottom: 5%;
+    left: 10%;
+    right: 10%;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 0px;
+    overflow: hidden;
+  }
+  .list-heading p {
+    font-size: 14px;
+  }
+  .list-group-item-heading {
+    font-weight: bold;
+    font-size: 11px;
+    padding-top: 0px;
+    padding-bottom: 0px;   
+    margin: 0px;  
+  }
+  .list-details {
+    font-size: 10px;
+    width: 100%;
+    height: 100px;
+    overflow-y: auto;
+  }
+  .list-details li p {
+    padding-top: 0px;
+    padding-bottom: 0px; 
+    padding-left: 5px;
+    padding-right: 5px;
+    margin: 0px;
+  }
+  .list-details::-webkit-scrollbar {
+    width: 5px;
+    overflow: auto;
+  }
+  .list-details::-webkit-scrollbar-thumb {
+    background-color: #D62929;
+  }
+  .infowindow {
+    width: 100px;
+    font-size: 10px;
+  }
+  .v-name,
+  .v-address,
+  .v-contact {
+    padding-top: 0px;
+    padding-bottom: 0px;      
+  }
+  .list-group-item-category,
+  .v-url,
+  .v-tip {
+   display: none;
+  }
+}

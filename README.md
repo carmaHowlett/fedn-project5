@@ -24,7 +24,7 @@ Udacity's awesome Intro to Ajax course by Cameron Pittman: https://www.udacity.c
 
 Udacity's super awesome Javscript Design Patterns by Ben Jaffe: https://www.udacity.com/course/ud989
 
-Gulp to create prod ready versio of the codes : http://www.sitepoint.com/introduction-gulp-js/
+Gulp to create prod ready version of the codes : http://www.sitepoint.com/introduction-gulp-js/
 
 P5 works of fellow Udacity Students:
 

@@ -1,7 +1,7 @@
 # fedn-project5
 FEDN Project 5 - Neighborhood Map
 
-Web App here :  http://mandyreal.github.io/
+Web App here :  http://mandyreal.github.io/build/
 
 Project Goal: Develop a single page application featuring a map of your neighborhood or a neighborhood you would like to visit. Then add additional functionality to this map including highlighted locations, third-party data about those locations and various ways to browse the content.
 
@@ -25,6 +25,8 @@ Udacity's awesome Intro to Ajax course by Cameron Pittman: https://www.udacity.c
 Udacity's super awesome Javscript Design Patterns by Ben Jaffe: https://www.udacity.com/course/ud989
 
 Gulp to create prod ready version of the codes : http://www.sitepoint.com/introduction-gulp-js/
+
+JSHint - To check coding quality!
 
 P5 works of fellow Udacity Students:
 

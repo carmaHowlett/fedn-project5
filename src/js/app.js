@@ -208,9 +208,8 @@ var viewModel = function() {
 
   function highlightListItem(name){
     var venue = name;
-    console.log("marker clicked!" + name);
-    self.selectedVenue(name);
-    document.getElementById(name).scrollIntoView();
+    self.selectedVenue(venue);
+    document.getElementById(venue).scrollIntoView();
   }
 };
 

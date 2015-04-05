@@ -62,7 +62,7 @@ body { height: 100%; margin: 0; padding: 0; font-family: 'Ubuntu', sans-serif; }
   max-width: 95%;
   max-height: 100%;
   margin: 0;
-  padding: 5px;
+  padding: 10px;
   overflow: auto;
 }
 
@@ -80,7 +80,8 @@ body { height: 100%; margin: 0; padding: 0; font-family: 'Ubuntu', sans-serif; }
 }
 
 .list-details li:active {
-  background-color: #FFD180;
+  background: #FFF3E0;
+  border: 5px solid rgba(0, 0, 0, 0.3);
 }
 
 .list-group-item-heading {

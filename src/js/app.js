@@ -12,7 +12,8 @@ var viewModel = function() {
   self.topPicksFiltered = ko.observableArray(self.topPicks());
   self.neighborhood = ko.observable(defaultNeighborhood); 
   self.filterString = ko.observable('');
-  
+  self.selectedVenue = ko.observable(''); // selected venue info
+
   initializeMap();
 
   // display neighborhood map based on user input 
@@ -24,7 +25,7 @@ var viewModel = function() {
     }
   });
 
-  // function to handle user clicks on a mapMarker
+  // function to handle when user clicks on an item in list box
   self.clickVenue = function(clickedItem) {
     var clickedVenueName = clickedItem.venue.name;
     for (var i = 0; i < mapMarkers.length; i ++) {
@@ -84,16 +85,21 @@ var viewModel = function() {
       zoom: 14,
       disableDefaultUI: true,
     };
-  
-    map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
+ 
+    try { 
+      map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
 
-    google.maps.event.addDomListener(window, 'resize', function() {
-     var center = map.getCenter();
-     google.maps.event.trigger(map, 'resize');
-     map.setCenter(center); 
-    });
+      google.maps.event.addDomListener(window, 'resize', function() {
+       var center = map.getCenter();
+       google.maps.event.trigger(map, 'resize');
+      map.setCenter(center); 
+      });
     
-    infowindow = new google.maps.InfoWindow();
+      infowindow = new google.maps.InfoWindow();
+    }
+    catch(e) {
+      alert('Error connecting to Google Maps');
+    }
   }
 
   // based on location given by user, call Foursquare 
@@ -129,7 +135,7 @@ var viewModel = function() {
     });
   }
 
-  // this is the callback function from calling the Place Service
+  // this is the callback function from calling the Google Place Service
   function neighborhoodCallback(location, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
       $('#listBox').css('display', 'inline');
@@ -177,6 +183,7 @@ var viewModel = function() {
     google.maps.event.addListener(marker, 'click', function() {
       infowindow.setContent(contentString);
       infowindow.open(map, marker);
+      highlightListItem(name);
     });
     
     google.maps.event.addListener(marker, 'mouseover', function() {
@@ -194,6 +201,11 @@ var viewModel = function() {
     service.textSearch(searchLocation, neighborhoodCallback);
   }
 
+  function highlightListItem(name){
+    var venue = name;
+    console.log("marker clicked!" + name);
+    document.getElementById('listBox').scrollIntoView();
+  }
 };
 
 

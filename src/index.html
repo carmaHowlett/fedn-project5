@@ -39,8 +39,8 @@
         <hr>
         <div class="list-group">
             <ul class="list-details" data-bind="foreach: topPicksFiltered">
-                <li data-bind="click: $parent.clickVenue">
-                    <h3><span class="list-group-item-heading" data-bind="text: venue.name"></span></h3>
+                <li data-bind="click: $parent.clickVenue, css: {'selected': venue.name === $parent.selectedVenue()}">
+                    <h3><span class="list-group-item-heading" data-bind="text: venue.name, attr:{'id': venue.name}"></span></h3>
                      <p><span class="list-group-item-category" data-bind="text: venue.categories[0].name"></span></p>
                      <p><span class="list-group-item-address" data-bind="text: venue.location.formattedAddress"></span></p>
                      <p><img src="img/foursquare-rating-icon.png" alt="Foursqaure Rating Logo">

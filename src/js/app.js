@@ -10,9 +10,9 @@ var viewModel = function() {
 
   self.topPicks         = ko.observableArray([]); 
   self.topPicksFiltered = ko.observableArray(self.topPicks());
-  self.neighborhood = ko.observable(defaultNeighborhood); 
-  self.filterString = ko.observable('');
-  self.selectedVenue = ko.observable(''); // selected venue info
+  self.neighborhood     = ko.observable(defaultNeighborhood); 
+  self.filterString     = ko.observable('');
+  self.selectedVenue    = ko.observable(''); // selected venue info
 
   initializeMap();
 
@@ -190,6 +190,11 @@ var viewModel = function() {
       infowindow.setContent(contentString);
       infowindow.open(map, marker);
     });
+
+    google.maps.event.addListener(infowindow, 'closeclick', function() {
+          //clearMarkers();
+          self.selectedVenue('');
+    });
   }
 
   // get neighborhood location data using Google Map Place Service
@@ -204,7 +209,8 @@ var viewModel = function() {
   function highlightListItem(name){
     var venue = name;
     console.log("marker clicked!" + name);
-    document.getElementById('listBox').scrollIntoView();
+    self.selectedVenue(name);
+    document.getElementById(name).scrollIntoView();
   }
 };
 

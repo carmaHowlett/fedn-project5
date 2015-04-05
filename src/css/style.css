@@ -75,13 +75,13 @@ body { height: 100%; margin: 0; padding: 0; font-family: 'Ubuntu', sans-serif; }
   background-color: #D62929;
 }
 
+.selected, 
 .list-details li:hover {
   background-color: #FFF3E0;
 }
 
 .list-details li:active {
-  background: #FFF3E0;
-  border: 5px solid rgba(0, 0, 0, 0.3);
+  background-color: #FFF3E0;
 }
 
 .list-group-item-heading {
